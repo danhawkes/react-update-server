@@ -1,0 +1,43 @@
+{
+  "name": "react-update-server",
+  "version": "0.1.0",
+  "description": "Server for react-native jsbundle updates.",
+  "main": "dist/index.js",
+  "dependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "restify": "^4.0.4",
+    "semver": "^5.1.0",
+    "z-schema": "^3.16.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "del": "^2.2.0",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-jasmine": "^2.3.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "prepublish": "node node_modules/gulp/bin/gulp.js compile",
+    "test": "node node_modules/gulp/bin/gulp.js test",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danhawkes/react-update-server.git"
+  },
+  "keywords": [
+    "react",
+    "update",
+    "server"
+  ],
+  "author": "dan@danhawkes.co.uk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danhawkes/react-update-server/issues"
+  },
+  "homepage": "https://github.com/danhawkes/react-update-server"
+}

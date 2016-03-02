@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Bundle compatiblity spec",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Application ID, e.g. 'com.example'"
+      },
+      "container": {
+        "type": "string",
+        "description": "Semver range of compatible container versions, e.g. '1.1.0 <1.2.0'"
+      },
+      "bundle": {
+        "type": "string",
+        "description": "Corresponding bundle version"
+      },
+      "platforms": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "android",
+            "ios"
+          ],
+          "uniqueItems": true
+        }
+      }
+    },
+    "required": [
+      "id",
+      "container",
+      "bundle"
+    ]
+  }
+}
