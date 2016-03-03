@@ -1,0 +1,6 @@
+src/
+test/
+gulpfile.js
+.jshintrc
+.babelrc
+
