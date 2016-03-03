@@ -11,7 +11,7 @@ import config from './data/config';
 import configSchema from './config_schema.json';
 
 
-let validator = new ZSchema(config);
+let validator = new ZSchema();
 validator.validate(config, configSchema);
 var errors = validator.getLastErrors();
 if (errors !== undefined) {
