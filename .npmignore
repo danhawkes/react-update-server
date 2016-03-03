@@ -3,4 +3,5 @@ test/
 gulpfile.js
 .jshintrc
 .babelrc
+.idea/
 
