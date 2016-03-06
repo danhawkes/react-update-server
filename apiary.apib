@@ -1,0 +1,44 @@
+FORMAT: 1A
+HOST: https://react-update-server.arcs.co
+
+# react-update-server
+
+## Update check [/update-check{?id}{?platform}{?container}{?bundle}]
+
++ Parameters
+    + id: com.example - Bundle identifier/android app ID.
+    + platform: ios (enum[string]) - Platform identifier.
+        + Members
+            + `ios`
+            + `android`
+    + container: 1.0.2 - Container version.
+    + bundle: 1.5.1 - Bundle version.
+
+### Check for a bundle update [GET]
+
+Check for a bundle update.
+
+E.g. `/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.4.1`
+
++ Response 204
+
++ Response
+
+    + Headers
+
+            Location: https://example.com/bundles/com.example.app/1.5.1/ios/main.jsbundle
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Description of the error, e.g. 'platform parameter missing'."
+                    }
+                },
+                "required": ["message"]
+            }

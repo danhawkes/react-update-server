@@ -1,6 +1,4 @@
-# react-update-server
-
-> A server for react-native `*.jsbundle` updates
+> Server for react-native `*.jsbundle` updates
 
 ## About
 
@@ -12,22 +10,7 @@ However, there's a constraint: the app __container__ needs to be compatible with
 
 ## API
 
-`GET /update-check?{id}{platform}{container}{bundle}`
-
-* id - bundle identifier/android app ID
-* platform - 'ios' or 'android'
-* container - Container version, e.g. '1.0.2'
-* bundle - Bundle version, e.g '1.5.1'
-
-E.g. `/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.5.1`
-
-__Response `204`__
-
-No update required/available.
-
-__Response `302`__
-
-A new version is available. The response is a redirect to the bundle location.
+See the [API blueprint](http://docs.reactupdateserver.apiary.io).
 
 ## Setup
 
