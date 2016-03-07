@@ -75,6 +75,6 @@ server.get(/\/bundles\/?.*/, restify.serveStatic({
   directory: './data'
 }));
 
-server.listen(8123, function () {
+server.listen(process.env.PORT || 80, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
