@@ -1,22 +1,12 @@
 'use strict';
 
 import Resolver from '../src/Resolver';
+import Server from '../src/Server';
 import expect from 'expect.js';
-
-
-const config = [
-  {
-    "id": "com.example",
-    "container": ">=1.0.0 <1.1.0",
-    "bundle": "1.5.1",
-    "platforms": ["ios", "android"]
-  },
-  {
-    "id": "com.example",
-    "container": "1.x.x",
-    "bundle": "1.6.6"
-  }
-];
+import restify from 'restify';
+import fs from 'fs';
+import path from 'path';
+import config from './data/config';
 
 let resolver = new Resolver(config);
 
@@ -45,5 +35,59 @@ describe('resolve path', () => {
 
   it('for unknown app ID', () => {
     expect(resolver.resolvePath('com.unknown', 'ios', '1.0.2', '1.0.0')).to.equal(undefined);
+  });
+});
+
+describe('server', () => {
+
+  let server, client;
+
+  beforeEach(() => {
+    let port = 12345;
+
+    server = new Server(config, path.join(__dirname, 'data'));
+    server.listen(port);
+
+    client = restify.createStringClient({
+      url: `http://localhost:${port}`
+    });
+  });
+
+  afterEach(() => {
+    server.close();
+    client.close();
+  });
+
+  it('return 204', done => {
+    client.get('/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.5.1', (err, req, res, data) => {
+      if (err) {
+        expect().fail(err);
+      } else {
+        expect(res.statusCode).to.equal(204);
+      }
+      done();
+    });
+  });
+
+  it('return 302', done => {
+    client.get('/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.3.3', (err, req, res, data) => {
+      if (err) {
+        expect().fail(err);
+      } else {
+        expect(res.headers.location).to.equal('bundles/com.example/1.5.1/ios/main.jsbundle');
+      }
+      done();
+    });
+  });
+
+  it('return bundle file', done => {
+    client.get('/bundles/com.example/1.5.1/ios/main.jsbundle', (err, req, res, data) => {
+      if (err) {
+        expect().fail(err);
+      } else {
+        expect(data).to.equal('BUNDLE');
+      }
+      done();
+    })
   });
 });

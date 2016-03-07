@@ -1,0 +1,13 @@
+[
+  {
+    "id": "com.example",
+    "container": ">=1.0.0 <1.1.0",
+    "bundle": "1.5.1",
+    "platforms": ["ios", "android"]
+  },
+  {
+    "id": "com.example",
+    "container": "1.x.x",
+    "bundle": "1.6.6"
+  }
+]
