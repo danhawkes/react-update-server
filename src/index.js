@@ -10,7 +10,10 @@ import ZSchema from "z-schema";
 import config from './data/config';
 import configSchema from './config_schema.json';
 
+// Work in script directory for access to ./data
+process.chdir(__dirname);
 
+// Validate the config up-front
 let validator = new ZSchema();
 validator.validate(config, configSchema);
 var errors = validator.getLastErrors();
