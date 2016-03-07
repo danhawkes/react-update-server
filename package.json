@@ -1,9 +1,10 @@
 {
   "name": "react-update-server",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Server for react-native jsbundle updates.",
   "main": "dist/index.js",
   "dependencies": {
+    "bunyan": "^1.7.1",
     "gulp": "git+https://github.com/gulpjs/gulp.git#4.0",
     "restify": "^4.0.4",
     "semver": "^5.1.0",

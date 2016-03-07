@@ -2,6 +2,7 @@
 
 import packageJson from '../package';
 import restify from 'restify';
+import bunyan from 'bunyan';
 import semver from 'semver';
 import process from 'process';
 import Resolver from './Resolver';
@@ -26,6 +27,7 @@ if (errors !== undefined) {
 let server = restify.createServer();
 server.name = 'react-update-server';
 server.use(restify.queryParser());
+server.use(restify.gzipResponse());
 
 let resolver = new Resolver(config);
 
@@ -73,6 +75,13 @@ server.get('/', (req, res, next) => {
 
 server.get(/\/bundles\/?.*/, restify.serveStatic({
   directory: './data'
+}));
+
+server.on('after', restify.auditLogger({
+  log: bunyan.createLogger({
+    name: 'audit',
+    stream: process.stdout
+  })
 }));
 
 server.listen(process.env.PORT || 80, function () {
