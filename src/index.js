@@ -27,7 +27,7 @@ let server = restify.createServer();
 server.name = 'react-update-server';
 server.use(restify.queryParser());
 
-let resolvePath = new Resolver(config).resolvePath;
+let resolver = new Resolver(config);
 
 
 server.get('/update-check', (req, res, next) => {
@@ -57,7 +57,7 @@ server.get('/update-check', (req, res, next) => {
     return next();
   }
 
-  let resolvedPath = resolvePath(id, platform, container, bundle);
+  let resolvedPath = resolver.resolvePath(id, platform, container, bundle);
   if (resolvedPath === undefined) {
     res.send(204);
     return res.next();
@@ -75,6 +75,6 @@ server.get(/\/bundles\/?.*/, restify.serveStatic({
   directory: './data'
 }));
 
-server.listen(80, function () {
+server.listen(8123, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
