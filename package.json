@@ -1,6 +1,6 @@
 {
   "name": "react-update-server",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Server for react-native jsbundle updates.",
   "main": "dist/index.js",
   "dependencies": {
