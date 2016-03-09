@@ -17,5 +17,5 @@ if (errors !== undefined) {
   process.exit(1);
 }
 
-let server = new Server(config, path.join(__dirname, 'data'));
+let server = new Server(path.join(__dirname, 'data'));
 server.listen(process.env.PORT);

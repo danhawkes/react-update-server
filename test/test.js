@@ -45,7 +45,7 @@ describe('server', () => {
   beforeEach(() => {
     let port = 12345;
 
-    server = new Server(config, path.join(__dirname, 'data'));
+    server = new Server(path.join(__dirname, 'data'));
     server.listen(port);
 
     client = restify.createStringClient({
@@ -86,6 +86,17 @@ describe('server', () => {
         expect().fail(err);
       } else {
         expect(data).to.equal('BUNDLE');
+      }
+      done();
+    })
+  });
+
+  it('return config', done => {
+    client.get('/config', (err, req, res, data) => {
+      if (err) {
+        expect().fail(err);
+      } else {
+        expect(data).to.eql(JSON.stringify(config));
       }
       done();
     })

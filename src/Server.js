@@ -6,11 +6,14 @@ import bunyan from 'bunyan';
 import semver from 'semver';
 import process from 'process';
 import Resolver from './Resolver';
+import path from 'path';
 
 
 export default class Server {
 
-  constructor(config, dataDir) {
+  constructor(dataDir) {
+
+    let config = require(path.join(dataDir, 'config'));
 
     let resolver = new Resolver(config);
 
@@ -58,6 +61,10 @@ export default class Server {
       // For dokku's CHECKS test
       res.send(200, {name: packageJson.name, version: packageJson.version});
       next();
+    });
+
+    server.get('/config', (req, res, next) => {
+      res.send(200, config);
     });
 
     server.get(/\/bundles\/?.*/, restify.serveStatic({
