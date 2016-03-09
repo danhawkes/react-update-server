@@ -16,10 +16,6 @@ HOST: https://react-update-server.arcs.co
 
 ### Check for a bundle update [GET]
 
-Check for a bundle update.
-
-E.g. `/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.4.1`
-
 + Response 204
 
 + Response
@@ -42,3 +38,23 @@ E.g. `/update-check?id=com.example&platform=ios&container=1.0.2&bundle=1.4.1`
                 },
                 "required": ["message"]
             }
+
+## config [/config]
+
+### Get the config [GET]
+
++ Response 200 (application/json)
+
+        [
+          {
+            "id": "com.example",
+            "container": ">=1.0.0 <1.1.0",
+            "bundle": "1.5.1",
+            "platforms": ["ios", "android"]
+          },
+          {
+            "id": "com.example",
+            "container": "1.x.x",
+            "bundle": "1.6.6"
+          }
+        ]
