@@ -19,3 +19,5 @@ if (errors !== undefined) {
 
 let server = new Server(path.join(__dirname, 'data'));
 server.listen(process.env.PORT);
+
+process.on('SIGINT', () => server.close());
