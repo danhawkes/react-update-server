@@ -72,21 +72,9 @@ _…with NPM:_
 
 _…with docker:_
 
-`docker run -i -t -p 80:80 -v <data-path>:/app/data danhawkes/react-update-server`
-
-Where `<data-path>` is the path of a data directory to mount.
-
-_…with [dokku][3]:_
-
-This repo's ready to deploy via dokku. Basic steps are:
-1. Clone the repo
-2. Create your `data` directory and commit it
-3. Add a dokku remote (e.g. `git remote add dokku dokku@example.com:react-update`)
-4. Push to dokku: `git push dokku master`
-        =====> Application deployed:
-               http://react-update.example.com
+See [`react-update-server-docker`](3).
 
 
 [1]: https://github.com/npm/node-semver
-[2]: docs/config_schema.json
-[3]: http://dokku.viewdocs.io/dokku/
+[2]: src/config_schema.json
+[3]: https://hub.docker.com/r/danhawkes/react-update-server-docker/
