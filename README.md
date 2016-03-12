@@ -72,9 +72,9 @@ _…with NPM:_
 
 _…with docker:_
 
-See [`react-update-server-docker`](3).
+See [`react-update-server`][3].
 
 
 [1]: https://github.com/npm/node-semver
 [2]: src/config_schema.json
-[3]: https://hub.docker.com/r/danhawkes/react-update-server-docker/
+[3]: https://hub.docker.com/r/danhawkes/react-update-server/
